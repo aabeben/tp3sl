@@ -1,14 +1,9 @@
 #!/bin/env python
-import inspect
-import string
-def is_str(value):
-    return isinstance(value, str)
+import textwrap
+from textwrap_example import sample_text
 
 def main():
-    for name, value in inspect.getmembers(string, is_str):
-        if name.startswith('_'):
-            continue
-        print('%s=%r\n' %(name, value))
+    print(textwrap.fill(sample_text, width=50))
 
 
 if __name__ == "__main__":
