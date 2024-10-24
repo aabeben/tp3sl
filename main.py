@@ -3,7 +3,9 @@ import textwrap
 from textwrap_example import sample_text
 
 def main():
-    print(textwrap.fill(sample_text, width=50))
+    dedented_text = textwrap.dedent(sample_text)
+    print('Dedented:')
+    print(dedented_text)
 
 
 if __name__ == "__main__":
