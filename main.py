@@ -1,13 +1,23 @@
 #!/bin/env python
 import string
 
-values = {'var': 'foo'}
-t = string.Template("$var is here but $missing is not provided")
 def main():
-    try:
-        print('substitute()       :', t.substitute(values))
-    except KeyError as err:
-        print('ERROR:', str(err))
-print('safe_substitute():', t.safe_substitute(values))
+    class MyTemplate(string.Template):
+        delimiter='%'
+        idpattern='[a-z]+_[a-z]+'
+
+    template_text='''
+        Delimiter: %%
+        Replaced: %with_underscore
+        Ignored: %notunderscore
+    '''
+    d={
+        'with_underscore':'replaced',
+        'notunderscore': 'not replaced'
+    }
+    t=MyTemplate(template_text)
+    print('Modified ID pattern:')
+    print(t.safe_substitute(d))
+
 if __name__ == "__main__":
     main()
