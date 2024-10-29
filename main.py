@@ -2,16 +2,22 @@
 import re
 
 def main():
-    pattern = 'this'
+    # Precompile the pattern.
+    regexes = [
+        re.compile(p)
+        for p in ['this', 'that']
+    ]
+    print(regexes)
     text = 'Does this text match the pattern?'
+    print('Text: {!r}\n'.format(text))
 
-    match = re.search(pattern, text)
+    for regex in regexes:
+        print('Seeking "{}" ->'.format(regex.pattern), end=' ')
 
-    s = match.start()
-    e = match.end()
-
-    print('Found "{}"\nin "{}"\nfrom {} to {} ("{}")'.format(match.re.pattern, match.string, s, e, text[s:e]))
-
+        if regex.search(text):
+            print('match')
+        else:
+            print('no match')
 
 if __name__ == "__main__":
     main()
