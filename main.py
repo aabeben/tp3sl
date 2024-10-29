@@ -20,6 +20,10 @@ def test_patterns(text, patterns):
         print()
     return
 def main():
-    test_patterns('abbaaabbbbaaaaa', [('ab', "'a' followed by 'b'"),])
+    test_patterns('abbaabbba', [('ab*', 'a followed by zero or more b'),
+                                ('ab+', 'a followed by one or more b'),
+                                ('ab?', 'a followed by zero or one b'),
+                                ('ab{3}', 'a followed by three b'),
+                                ('ab{2, 3}','a followed by two to three b'),])
 if __name__ == "__main__":
     main()
