@@ -21,9 +21,16 @@ def test_patterns(text, patterns):
     return
 def main():
     test_patterns(
-        r'\d+ \D+ \s+',
+        'This is some text -- with punctuation.',
         [
-            (r'\\.\+','escape code')
+            (r'^\w+', 'word at start of string'),
+            (r'\A\w+', 'word at start of string'),
+            (r'\w+\S*$', 'word near end of string'),
+            (r'\w+\S*\Z', 'word near end of string'),
+            (r'\w*t\w*','word containing t'),
+            (r'\bt\w+','t at start of word'),
+            (r'\w+t\b','t at end of word'),
+            (r'\Bt\B','t, not start or end of word'),
         ]
     )
 if __name__ == "__main__":
