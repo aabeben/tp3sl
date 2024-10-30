@@ -21,11 +21,10 @@ def test_patterns(text, patterns):
     return
 def main():
     test_patterns(
-        'abbaabbba',
-        [('a.', 'a followed by any one character'),
-         ('b.', 'a followed by any one character'),
-         ('a.*b', 'a followed by anything, ending in b'),
-         ('a.*?b', 'a followed by anything, ending in b'),]
+        r'\d+ \D+ \s+',
+        [
+            (r'\\.\+','escape code')
+        ]
     )
 if __name__ == "__main__":
     main()
